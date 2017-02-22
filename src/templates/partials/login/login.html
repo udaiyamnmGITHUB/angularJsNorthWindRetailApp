@@ -1,0 +1,32 @@
+<!--
+    you can substitue the span of reauth email for a input with the email and
+    include the remember me checkbox
+    -->
+    <div class="container">
+        <div class="card card-container">
+            <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+            <p id="profile-name" class="profile-name-card"></p>
+            <form class="form-signin">
+                <input type="text" id="username" class="form-control" placeholder="username" ng-model="username" autofocus>
+                <input type="password" id="inputPassword" class="form-control" ng-model="password" placeholder="Password">
+                
+                <button class="btn btn-lg btn-primary btn-block btn-signin" ng-click="login()" type="submit">Sign in</button>
+            </form><!-- /form -->
+            
+        </div><!-- /card-container -->
+    </div><!-- /container -->
+
+
+
+<!-- <div class="row login-form">
+    <h1 class="login-title"> Welcome to 5 Idiots app </h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <label class="login-text">UserName:</label><input type="text" id="username" ng-model="username">
+            <label class="login-text">Password:</label><input type="password" id="password" ng-model="password">
+            <button class="button login-button" type="submit" ng-click="login()">login</button>
+        </div>
+        <h3 class="errorMessage" ng-bind="errorMessage"></h3>
+    </div>
+</div>
+</div> -->

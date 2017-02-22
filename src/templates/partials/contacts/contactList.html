@@ -1,0 +1,56 @@
+<h2>Address Book</h2>
+</br>
+</br>
+<table class="table table-condensed" ng-controller="getContactDetailsController">
+		<thead>
+
+				<tr>
+					<th class="id" custom-sort order="'id'" sort="sort">User_Id&nbsp;</th>
+					<th class="firstname" custom-sort order="'id'" sort="sort">First Name&nbsp;</th>
+					<th class="lastname" custom-sort order="'name'" sort="sort">Last Name&nbsp;</th>
+					<th class="field3" custom-sort order="'field3'" sort="sort">Email&nbsp;</th>
+					<th class="field3" custom-sort order="'field3'" sort="sort">Country&nbsp;</th>
+					<th class="field5">Delete
+						&nbsp;</th>	
+					<th class="field5">update
+					&nbsp;</th>	
+						
+				</tr>
+			</thead>
+			<tfoot>
+				<td colspan="6">
+					<div class="pagination pull-right">
+						<ul>
+							<li ng-class="{disabled: currentPage == 0}"><a href
+								ng-click="prevPage()">« Prev</a></li>
+
+							<li
+								ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap) "
+								ng-class="{active: n == currentPage}" ng-click="setPage()">
+								<a href ng-bind="n + 1">1</a>
+							</li>
+
+							<li ng-class="{disabled: (currentPage) == pagedItems.length - 1}">
+								<a href ng-click="nextPage()">Next »</a>
+							</li>
+						</ul>
+					</div>
+				</td>
+			</tfoot>
+			<!--  <pre>pagedItems.length: {{pagedItems.length|json}}</pre>
+                <pre>currentPage: {{currentPage|json}}</pre>
+                <pre>currentPage: {{sort|json}}</pre> -->
+			<tbody>
+				<tr  ng-repeat="item in pagedItems[currentPage] | orderBy:sort.sortingOrder:sort.reverse">
+					<td>{{item.id}}</td>
+					<td>{{item.firstName}}</td>
+					<td>{{item.lastName}}</td>
+					<td>{{item.email}}</td>
+					<td>{{item.country.name}}</td>
+					<td><button class="btn btn-small" ng-click="deleteOrder($index)">delete</button></td>
+					<td><button class="btn btn-small" ng-click="open(item)">EditTheAddress</button></td>
+					
+				</tr>
+			</tbody>
+		</table>
+<a class="btn btn-primary" ng-click="createNewContcat()" >Create a new Contact</a>

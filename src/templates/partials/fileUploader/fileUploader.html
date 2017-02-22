@@ -1,0 +1,75 @@
+<!--
+<div>
+    watching model:
+    <div class="button" ng-file-select ng-model="files">Upload using model $watch</div>
+
+9.2333333333333333333333333333333333333333333333333333333333333333333333333333333308*...................................................*0
+    -.-+++++++++++++++<div class="button" ng-file-select ng-file-change="upload($files)">Upload on file change</div>
+    Drop File:
+    <div ng-file-drop ng-model="files" class="drop-box"
+         drag-over-class="dragover" ng-multiple="true" allow-dir="true"
+         accept=".jpg,.png,.pdf">Drop Images or PDFs files here</div>
+    <div ng-no-file-drop>File Drag/Drop is not supported for this browser</div>
+</div>-->
+
+
+
+<div class="upload-buttons">
+    <div id="editArea">
+        <div style="float:left; margin-right: 10px;">
+            <form name="myForm">
+                <fieldset><legend>Upload on form submit</legend>
+                    Username: <input type="text" name="userName" ng-model="username" size="39" required>
+                    <i ng-show="myForm.userName.$error.required">*required</i><br>
+                    Profile Picture: <input type="file" ng-file-select ng-model="picFile" name="file" accept="image/*"
+                                            ng-file-change="generateThumb(picFile[0], $files)" required>
+                    <i ng-show="myForm.file.$error.required">*required</i>
+                    <br/>
+
+                    <button ng-disabled="!myForm.$valid" ng-click="uploadPic(picFile)">Submit</button>
+                    <img ng-show="picFile[0].dataUrl != null" ng-src="{{picFile[0].dataUrl}}" class="thumb">
+						<span class="progress" ng-show="picFile[0].progress >= 0">
+							<div style="width:{{picFile[0].progress}}%" ng-bind="picFile[0].progress + '%'"></div>
+						</span>
+                    <span ng-show="picFile[0].result">Upload Successful</span>
+                </fieldset>
+                <br/>
+            </form>
+            <fieldset><legend>Upload right away</legend>
+                <div class="up-buttons">
+                    <div ng-file-select ng-model="files" class="upload-button"
+                         ng-multiple="false" ng-accept="'*.pdf,*.jpg,*.png'" ng-model-rejected="rejFiles"
+                         tabindex="0">Attach an Image or PDF</div><br/>
+                    <button ng-file-select ng-model="files"
+                            ng-multiple="true">Attach Any File</button>
+                </div>
+                <div ng-file-drop ng-file-select ng-model="files" ng-model-rejected="rejFiles"
+                     drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
+                     ng-multiple="true" allow-dir="true" ng-accept="'image/*,application/pdf'"
+                     drop-available="dropAvailable">
+                    <div ng-hide="dropAvailable">File Drop not available</div>
+                    <div ng-show="dropAvailable">Drop Images or PDFs</div>
+                    <div>click to select</div>
+                </div>
+            </fieldset>
+        </div>
+        <fieldset><legend>Play with attributes</legend>
+            <label>ng-accept (accept/reject file model): <input type="text" ng-model="accept"></label><br/>
+            <label>accept (for select browser dependent): <input type="text" ng-model="acceptSelect"></label><br/>
+            <label>ng-capture (for mobile): <input type="text" ng-model="capture"></label><br/>
+            <label><input type="checkbox" ng-model="multiple" >ng-multiple (allow multiple files)</label><br/>
+            <label><input type="checkbox" ng-model="disabled">ng-disabled</label><br/>
+            <label><input type="checkbox" ng-model="allowDir">allow-dir (allow directory drop Chrome only)</label><br/>
+
+            <div class="up-buttons">
+                <div ng-file-select ng-file-drop ng-model="files" ng-model-rejected="rejFiles"
+                     ng-multiple="multiple" ng-accept="accept" accept="{{acceptSelect}}"
+                     ng-disabled="disabled" ng-capture="capture"
+                     drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                     allow-dir="allowDir" class="drop-box" drop-available="dropAvailable">Select File
+                    <span ng-show="dropAvailable">or Drop</span></div><br/>
+            </div>
+        </fieldset>
+        <br/>
+    </div>
+</div>
